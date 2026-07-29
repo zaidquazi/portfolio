@@ -36,7 +36,16 @@ export function GlobalHeader() {
     <>
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''} ${isHidden ? styles.hidden : ''}`}>
         <div className={styles.container}>
-          <Link href="/" className={styles.logo}>
+          <Link 
+            href="/" 
+            className={styles.logo}
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             ZH.
           </Link>
 
