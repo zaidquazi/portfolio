@@ -1,0 +1,26 @@
+.animateEnter {
+  animation: fadeSlideUp var(--duration-slow) var(--ease-out-expo) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animateEnter {
+    animation: fadeIn var(--duration-base) var(--ease-in-out) forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

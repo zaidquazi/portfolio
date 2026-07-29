@@ -1,0 +1,54 @@
+.base {
+  will-change: transform, opacity;
+}
+
+/* Durations mapped to design tokens */
+.duration-fast {
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-in-out);
+}
+
+.duration-base {
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-in-out);
+}
+
+.duration-slow {
+  transition-duration: 800ms; /* Specialized slow, smooth reveal */
+  transition-timing-function: var(--ease-out-expo);
+}
+
+/* Animations */
+.fade-up.hidden {
+  opacity: 0;
+  transform: translateY(var(--space-8));
+}
+
+.fade-in.hidden {
+  opacity: 0;
+}
+
+.slide-left.hidden {
+  opacity: 0;
+  transform: translateX(var(--space-8));
+}
+
+.slide-right.hidden {
+  opacity: 0;
+  transform: translateX(calc(-1 * var(--space-8)));
+}
+
+/* Visible State */
+.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .base {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

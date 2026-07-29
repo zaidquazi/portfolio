@@ -1,0 +1,260 @@
+/* Section and Header layout handled by primitives */
+
+/* =========================================
+   Flagship Layout (Visual Dominance)
+   ========================================= */
+.flagship {
+  grid-column: 1 / -1; /* Dominate full width */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  padding: 0; /* Remove padding to let image bleed if wanted, but let's keep padding on the container */
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.flagship:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.flagshipVisual {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background-color: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transition: border-color var(--trans-fast);
+}
+
+.flagship:hover .flagshipVisual {
+  border-color: var(--border-strong);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    var(--grid-color) 10px,
+    var(--grid-color) 20px
+  );
+}
+
+.placeholderText {
+  font-family: var(--font-geist-mono);
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+.flagshipContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-8) 0;
+}
+
+.flagshipMetrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+  padding: var(--space-6);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.metricValue {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metricLabel {
+  font-family: var(--font-geist-mono);
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+/* =========================================
+   Secondary Projects Grid
+   ========================================= */
+.supportingGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: transform var(--trans-slow) var(--ease-out-expo), 
+              box-shadow var(--trans-slow) var(--ease-out-expo),
+              border-color var(--trans-fast);
+}
+
+.project:not(.flagship):hover {
+  transform: translateY(calc(-1 * var(--space-1)));
+  box-shadow: var(--elevation-2);
+  border-color: var(--border-strong);
+}
+
+.project:active {
+  transform: scale(0.995);
+  box-shadow: var(--shadow-sm);
+}
+
+.project:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: var(--space-1);
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-6);
+}
+
+.projectName {
+  font-size: var(--text-h2);
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+  color: var(--text-primary);
+}
+
+.projectYear {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.projectBody {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-16);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-micro);
+}
+
+.metaLabel {
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+  color: var(--text-tertiary);
+}
+
+.metaValue {
+  font-size: var(--text-body-sm);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 70ch;
+}
+
+.oneLiner {
+  font-size: var(--text-body-large);
+  color: var(--text-secondary);
+  line-height: var(--lh-body);
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.techTag {
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--surface-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.supportingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  margin-top: var(--space-16);
+}
+
+.supportingGrid .projectBody {
+  grid-template-columns: 1fr;
+}
+
+.supportingGrid .oneLiner {
+  font-size: var(--text-body);
+}
+
+@media (max-width: 768px) {
+  .flagship {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .flagshipVisual {
+    min-height: 300px;
+  }
+
+  .projectBody {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  
+  .projectName {
+    font-size: var(--text-h3);
+  }
+
+  .supportingGrid {
+    grid-template-columns: 1fr;
+  }
+}

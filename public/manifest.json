@@ -1,0 +1,58 @@
+{
+  "name": "Zaid Husain — Full Stack Developer Portfolio",
+  "short_name": "Zaid Husain",
+  "description": "Portfolio of Zaid Husain — Full Stack Developer specializing in React.js, Node.js, MERN Stack, TypeScript, and Python. Based in Amravati, India.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["portfolio", "technology", "software"],
+  "keywords": "Full Stack Developer, React.js, Node.js, MERN, TypeScript, Portfolio, Zaid Husain",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "Browse Zaid Husain's full-stack development projects",
+      "url": "/projects",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with Zaid Husain",
+      "url": "/contact",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Resume",
+      "short_name": "Resume",
+      "description": "Download Zaid Husain's resume",
+      "url": "/resume",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,60 @@
+/* Section and Header layout handled by primitives */
+
+.editorialGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--space-16);
+  row-gap: var(--space-24);
+}
+
+.principleBlock {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  max-width: 55ch; /* Controls F-pattern line length */
+}
+
+.principleNumber {
+  font-family: var(--font-geist-mono);
+  font-size: var(--text-body-sm);
+  color: var(--text-tertiary);
+  padding-top: var(--space-1);
+}
+
+.principleContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.principleTitle {
+  font-size: var(--text-h3);
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: var(--lh-heading);
+}
+
+.principleDesc {
+  font-size: var(--text-body-large);
+  line-height: var(--lh-body);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .editorialGrid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-16);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .principleBlock {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .principleNumber {
+    padding-top: 0;
+  }
+}

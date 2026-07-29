@@ -1,0 +1,410 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.sectionBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-label);
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-geist);
+  font-size: var(--text-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-section);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  max-width: var(--max-w-prose);
+  line-height: var(--lh-body);
+}
+
+/* Design-System Engineering Philosophy Callout */
+.philosophyCallout {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid #3b82f6;
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-6) var(--space-8);
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .philosophyCallout {
+    background: var(--surface-secondary);
+    border-color: rgba(255, 255, 255, 0.08);
+    border-left-color: #3b82f6;
+  }
+}
+
+.calloutBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.calloutIcon {
+  color: #3b82f6;
+}
+
+.calloutLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.calloutText {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Engineering Status Panel (Primary Stack & Currently Exploring) */
+.statusPanel {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-6) var(--space-8);
+  margin-bottom: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+@media (prefers-color-scheme: dark) {
+  .statusPanel {
+    background: var(--surface-secondary);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.statusGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 260px;
+}
+
+.statusGroupLabel {
+  font-family: var(--font-mono);
+  font-size: 0.675rem;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.statusPills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.statusPill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.primaryStackPill {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.exploringPill {
+  background: var(--surface-tertiary);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.statusDivider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+@media (max-width: 768px) {
+  .statusDivider {
+    display: none;
+  }
+}
+
+/* Grid & Uniform Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gridItem {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryCard {
+  height: 100%;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  .categoryCard {
+    background: var(--surface-secondary);
+    border-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Subtle, non-scaling, non-bouncing hover effect */
+.categoryCard:hover {
+  border-color: var(--border-strong);
+  border-top-color: #3b82f6;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.08);
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  min-height: 80px; /* Equal title header height alignment across cards */
+}
+
+.domainNumber {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.categoryTitle {
+  font-size: var(--text-body-large);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: var(--track-heading);
+  margin: 0;
+}
+
+.domainSummary {
+  font-size: 0.775rem;
+  color: var(--text-tertiary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.skillRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: 4px 0;
+}
+
+.skillPrimaryRow {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+  padding: 4px 6px;
+  margin: 0 -6px;
+}
+
+.skillBullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  margin-top: 7px;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.primaryBullet {
+  background: #3b82f6 !important;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.6);
+}
+
+.categoryCard:hover .skillBullet {
+  background: #3b82f6;
+}
+
+.skillContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.skillHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.skillName {
+  font-size: var(--text-body-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.primarySkillName {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.coreTag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius-sm);
+  color: #3b82f6;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.skillFocus {
+  font-size: 0.775rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* Engineering Growth Progression Container */
+.progressionSection {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-6) var(--space-8);
+  margin-top: var(--space-8);
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+}
+
+.progressionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.progressionTitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-label);
+  color: var(--text-tertiary);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.progressionBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.progressionStep {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.stepDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  flex-shrink: 0;
+}
+
+.stepText {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-label);
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.stepArrowIcon {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .progressionSection {
+    padding: var(--space-4) var(--space-6);
+  }
+  .progressionBar {
+    gap: var(--space-2);
+  }
+}

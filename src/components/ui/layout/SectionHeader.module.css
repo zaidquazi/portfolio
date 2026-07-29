@@ -1,0 +1,31 @@
+.header {
+  margin-bottom: var(--space-16);
+  max-width: 65ch;
+}
+
+.title {
+  font-family: var(--font-geist);
+  font-size: var(--text-section-heading);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: var(--lh-heading);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  margin-top: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: var(--space-12);
+  }
+  .title {
+    font-size: clamp(32px, 6vw, 42px);
+  }
+}

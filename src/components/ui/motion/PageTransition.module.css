@@ -1,0 +1,21 @@
+.transitionWrapper {
+  animation: pageFadeIn var(--trans-fast) ease-out forwards;
+  will-change: opacity;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transitionWrapper {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+

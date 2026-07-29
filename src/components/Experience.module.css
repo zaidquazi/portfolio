@@ -1,0 +1,352 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-12);
+}
+
+.sectionBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-label);
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-geist);
+  font-size: var(--text-section-heading);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-section);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  max-width: var(--max-w-prose);
+  line-height: var(--lh-body);
+}
+
+/* =========================================================================
+   JOURNEY CONTAINER & SVG CANVAS
+   ========================================================================= */
+.journeyContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.svgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.bgPath {
+  stroke: var(--border-subtle);
+  stroke-width: 2px;
+  stroke-dasharray: 4 4;
+  opacity: 0.6;
+}
+
+.drawPath {
+  stroke: url(#journeyGradient);
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.connectorPath {
+  stroke: var(--border-subtle);
+  stroke-width: 1.5px;
+  stroke-dasharray: 3 3;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, stroke 0.3s ease;
+}
+
+.connectorActive {
+  stroke: #3b82f6;
+  opacity: 0.85;
+  stroke-dasharray: none;
+}
+
+/* =========================================================================
+   MILESTONE LIST & ITEMS
+   ========================================================================= */
+.milestoneList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  position: relative;
+  z-index: 2;
+}
+
+.milestoneItem {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-6);
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Node Anchor */
+.nodeWrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  margin-top: 14px;
+}
+
+.nodeOuterRing {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-primary);
+  border: 2px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-premium);
+}
+
+.nodeInnerDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  transition: all 0.3s var(--ease-premium);
+}
+
+.nodeStageIndex {
+  display: none;
+}
+
+/* Active Node State */
+.nodeActive .nodeOuterRing {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 0 16px rgba(59, 130, 246, 0.35);
+  background: var(--surface-primary);
+  transform: scale(1.1);
+}
+
+.nodeActive .nodeInnerDot {
+  background: #3b82f6;
+  transform: scale(1.2);
+}
+
+/* Content Card Reveal Container */
+.cardRevealWrapper {
+  width: 100%;
+}
+
+/* =========================================================================
+   CONTENT CARD DESIGN
+   ========================================================================= */
+.contentCard {
+  background: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  transition: transform 0.3s var(--ease-premium), border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .contentCard {
+    background: var(--surface-secondary);
+  }
+}
+
+.cardActive {
+  border-color: var(--border-strong);
+  box-shadow: var(--elevation-2);
+}
+
+.contentCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--elevation-2);
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.stageTag {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  letter-spacing: var(--track-caps);
+}
+
+.heroBadge {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: var(--text-secondary);
+  background: var(--surface-tertiary);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dotActive {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
+}
+
+.roleTitle {
+  font-family: var(--font-geist);
+  font-size: var(--text-card-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.companyName {
+  font-size: var(--text-body-sm);
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+.timelinePeriod {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* =========================================================================
+   NARRATIVE GRID (Problem -> Solution -> Decision -> Outcome)
+   ========================================================================= */
+.narrativeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  background: var(--surface-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .narrativeGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.narrativeItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.narrativeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.675rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.narrativeText {
+  font-size: var(--text-body-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* =========================================================================
+   TECH STACK BADGES
+   ========================================================================= */
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.techTag {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  padding: 3px 10px;
+  background: var(--surface-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+/* =========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================= */
+@media (max-width: 768px) {
+  .milestoneItem {
+    grid-template-columns: 36px 1fr;
+    gap: var(--space-3);
+  }
+
+  .nodeWrapper {
+    width: 36px;
+    height: 36px;
+    margin-top: 18px;
+  }
+
+  .nodeOuterRing {
+    width: 22px;
+    height: 22px;
+  }
+
+  .contentCard {
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

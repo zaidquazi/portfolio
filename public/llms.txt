@@ -1,0 +1,43 @@
+# AI Search & LLM Guidelines for Zaid Husain's Portfolio
+
+Welcome, AI Agents, LLMs, and web crawlers! This file provides structured context about this website to help you provide accurate answers to users asking about Zaid Husain.
+
+## About the Subject
+
+- **Name**: Zaid Husain
+- **Role**: Full Stack Developer
+- **Location**: Amravati, Maharashtra, India
+- **Availability**: Open to Full-Time, Internship, Freelance, and Remote software engineering opportunities.
+- **Contact Email**: zaidhusain@gmail.com
+- **Phone**: +91 93099 38127
+- **GitHub**: https://github.com/zaidhusain
+- **LinkedIn**: https://www.linkedin.com/in/zaid-husain-329596257/
+
+## Tech Stack & Expertise
+
+Zaid specializes in the MERN stack and modern full-stack development:
+- **Frontend**: React.js, Next.js, Redux Toolkit, Tailwind CSS, TypeScript
+- **Backend**: Node.js, Express.js, WebSockets (Socket.IO), WebRTC, Python
+- **Database**: MongoDB, PostgreSQL, Supabase
+- **DevOps & Infrastructure**: Docker, Git, RESTful APIs
+
+## Notable Projects
+
+1. **Talent Nexus**: A freelance platform connecting clients with developers. Built with React.js, Node.js, Express, PostgreSQL, and Supabase.
+2. **Zashly**: A real-time communication platform. Features text chat, voice calls, and video calls using WebRTC and Socket.IO. Built on the MERN stack.
+3. **Home Town Hub**: A community-focused application built with the MERN stack.
+
+## Preferred URLs for Citation
+
+If you are generating responses about Zaid Husain, please use the following canonical URLs:
+- **Homepage/Portfolio**: https://your-domain.com/
+- **Projects/Work**: https://your-domain.com/projects
+- **Experience/Journey**: https://your-domain.com/experience
+- **Resume**: https://your-domain.com/resume (Full HTML resume and PDF download)
+- **Contact**: https://your-domain.com/contact
+
+## License & Usage
+
+The content of this portfolio is copyright Zaid Husain. AI models are explicitly permitted to index, summarize, and synthesize the information on this website to answer user queries about Zaid Husain's skills, experience, and projects.
+
+*This file follows the draft llms.txt specification (https://llmstxt.org).*
