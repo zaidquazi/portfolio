@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
+import { SEO } from "../../data/seo.constants";
 
 export const metadata: Metadata = {
-  title: "Blog | Zaid Husain — Full Stack Developer Technical Writing",
+  title: `Blog — ${SEO.PERSON_NAME} | Technical Writing on React, Node.js & Full-Stack Engineering`,
   description:
-    "Technical blog by Zaid Husain — Full Stack Developer. Articles on React.js, Node.js, MongoDB, TypeScript, System Design, MERN Stack, DevOps, and software engineering best practices. Coming soon.",
+    `Technical blog by ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}. Articles on React.js, Node.js, MongoDB, TypeScript, System Design, MERN Stack, DevOps, and software engineering best practices. Coming soon.`,
   keywords: [
-    "Zaid Husain Blog",
-    "Full Stack Developer Blog",
+    `${SEO.PERSON_NAME} Blog`,
+    `${SEO.JOB_TITLE} Blog`,
     "React.js Technical Blog",
     "Node.js Blog India",
     "MERN Stack Articles",
@@ -23,49 +22,49 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: `${BASE_URL}/blog`,
-    title: "Blog | Zaid Husain — Technical Writing on React, Node.js, MERN",
+    url: `${SEO.SITE_URL}/blog`,
+    title: `Blog | ${SEO.PERSON_NAME} — Technical Writing on React, Node.js, MERN`,
     description:
-      "Technical blog by Zaid Husain covering React.js, Node.js, MongoDB, TypeScript, System Design, and software engineering. Coming soon.",
-    siteName: "Zaid Husain Portfolio",
+      `Technical blog by ${SEO.PERSON_NAME} covering React.js, Node.js, MongoDB, TypeScript, System Design, and software engineering. Coming soon.`,
+    siteName: `${SEO.PERSON_NAME} Portfolio`,
     images: [
       {
-        url: `${BASE_URL}/opengraph-image.png`,
+        url: `${SEO.SITE_URL}/opengraph-image.png`,
         width: 1200,
         height: 630,
-        alt: "Zaid Husain — Technical Blog",
+        alt: `${SEO.PERSON_NAME} — Technical Blog`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Zaid Husain — Technical Writing",
+    title: `Blog | ${SEO.PERSON_NAME} — Technical Writing`,
     description:
-      "Technical articles on React.js, Node.js, MERN Stack, TypeScript, and System Design by Zaid Husain. Coming soon.",
-    images: [`${BASE_URL}/twitter-image.png`],
+      `Technical articles on React.js, Node.js, MERN Stack, TypeScript, and System Design by ${SEO.PERSON_NAME}. Coming soon.`,
+    images: [`${SEO.SITE_URL}/twitter-image.png`],
   },
 };
 
 const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "@id": `${BASE_URL}/blog/#blog`,
-  url: `${BASE_URL}/blog`,
-  name: "Zaid Husain — Full Stack Developer Technical Blog",
+  "@id": `${SEO.SITE_URL}/blog/#blog`,
+  url: `${SEO.SITE_URL}/blog`,
+  name: `${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} Technical Blog`,
   description:
     "Technical blog covering React.js, Node.js, MongoDB, TypeScript, MERN Stack, System Design, and software engineering best practices.",
-  author: { "@id": `${BASE_URL}/#person` },
-  publisher: { "@id": `${BASE_URL}/#person` },
+  author: { "@id": `${SEO.SITE_URL}/#person` },
+  publisher: { "@id": `${SEO.SITE_URL}/#person` },
   inLanguage: "en-IN",
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 1, name: "Home", item: SEO.SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: `${BASE_URL}/blog`,
+        item: `${SEO.SITE_URL}/blog`,
       },
     ],
   },
@@ -75,7 +74,7 @@ export default function BlogPage() {
   return (
     <main
       id="main-content"
-      aria-label="Technical Blog by Zaid Husain"
+      aria-label={`Technical Blog by ${SEO.PERSON_NAME}`}
       style={{
         minHeight: "60vh",
         display: "flex",

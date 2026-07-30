@@ -70,18 +70,20 @@ export function ProjectMockup({ projectSlug, title, category, imagePath, onOpenM
 
       {/* Mockup Canvas Screen */}
       <div className={styles.mockupScreen}>
-        {!imgError && imagePath ? (
+        {imagePath && (
           <Image
             key={imagePath}
             src={imagePath}
             alt={`${title} screenshot`}
             className={styles.mockupImage}
+            style={{ display: imgError ? 'none' : 'block' }}
             fill
             unoptimized
             onError={() => setImgError(true)}
           />
-        ) : (
-          /* Clean fallback — tells you exactly where to put the real screenshot */
+        )}
+
+        {imgError && (
           <div className={styles.screenshotFallback}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
               <rect x="3" y="3" width="18" height="18" rx="2"></rect>

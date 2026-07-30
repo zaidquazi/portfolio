@@ -1,7 +1,7 @@
 {
-  "name": "Zaid Husain — Full Stack Developer Portfolio",
+  "name": "Zaid Husain — Full-Stack Software Engineer Portfolio",
   "short_name": "Zaid Husain",
-  "description": "Portfolio of Zaid Husain — Full Stack Developer specializing in React.js, Node.js, MERN Stack, TypeScript, and Python. Based in Amravati, India.",
+  "description": "Portfolio of Zaid Husain — Full-Stack Software Engineer specializing in React.js, Node.js, MERN Stack, TypeScript, and Python. Creator of Zashly, Zashio, and Zashub. Based in Amravati, India.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -11,7 +11,7 @@
   "lang": "en-IN",
   "dir": "ltr",
   "categories": ["portfolio", "technology", "software"],
-  "keywords": "Full Stack Developer, React.js, Node.js, MERN, TypeScript, Portfolio, Zaid Husain",
+  "keywords": "Full-Stack Software Engineer, React.js, Node.js, MERN, TypeScript, Portfolio, Zaid Husain",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -40,17 +40,31 @@
       "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
     },
     {
+      "name": "Zashly",
+      "short_name": "Zashly",
+      "description": "Real-time communication and social networking platform",
+      "url": "https://zashly.vercel.app/",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Zashio",
+      "short_name": "Zashio",
+      "description": "AI-powered campus placement and recruitment platform",
+      "url": "https://zashio.vercel.app/",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Zashub",
+      "short_name": "Zashub",
+      "description": "Community and neighborhood engagement platform",
+      "url": "https://zashub.vercel.app/",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
       "name": "Contact",
       "short_name": "Contact",
       "description": "Get in touch with Zaid Husain",
       "url": "/contact",
-      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
-    },
-    {
-      "name": "Resume",
-      "short_name": "Resume",
-      "description": "Download Zaid Husain's resume",
-      "url": "/resume",
       "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
     }
   ],

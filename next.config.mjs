@@ -196,6 +196,17 @@ const nextConfig = {
         destination: "/api/rss",
         permanent: false,
       },
+      // Permanent redirects for renamed projects
+      {
+        source: "/projects/talent-nexus",
+        destination: "/projects/zashio",
+        permanent: true,
+      },
+      {
+        source: "/projects/home-town-hub",
+        destination: "/projects/zashub",
+        permanent: true,
+      },
     ];
   },
 };

@@ -1,94 +1,98 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import styles from './ProjectsSection.module.css';
 import { Project } from '../../data/projects';
-import { ProjectCarousel } from './ProjectCarousel';
-import { ProjectStats } from './ProjectStats';
+import { CinematicShowcase } from './CinematicShowcase';
 import { TechStackPills } from './TechStackPills';
 import { ProjectButtons } from './ProjectButtons';
-import { ProjectModal } from './ProjectModal';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [modalOpen, setModalOpen] = useState(false);
+  // Cursor-reactive lighting and 3D tilt
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const handleOpenModal = () => {
-    setModalOpen(true);
+  const rotateX = useTransform(y, [-150, 150], [4, -4]);
+  const rotateY = useTransform(x, [-300, 300], [-4, 4]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+    setMousePosition({ x: offsetX, y: offsetY });
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    x.set(offsetX - centerX);
+    y.set(offsetY - centerY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
-    <>
-      <div className={`${styles.projectCard} ${project.isFlagship ? styles.flagshipCard : ''}`}>
-        {/* Top Accent Line */}
-        <div className={styles.accentBar} />
+    <motion.div
+      className={`${styles.cinematicCard} ${project.isFlagship ? styles.flagshipCinematic : ''}`}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      transition={{ type: 'spring', stiffness: 250, damping: 25 }}
+    >
+      {/* Cursor-reactive Lighting Spotlight Layer */}
+      <div 
+        className={styles.cursorSpotlight} 
+        style={{
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.12), transparent 80%)`,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Card Header Topbar */}
-        <div className={styles.cardHeader}>
-          <div className={styles.titleRow}>
-            <div className={styles.titleGroup}>
-              {project.isFlagship && (
-                <div className={styles.flagshipBadge}>
-                  <span className={styles.badgePulse} />
-                  <span>Flagship Project</span>
-                </div>
-              )}
-              <h3 className={styles.projectName}>{project.name}</h3>
-            </div>
-            <div className={styles.metaBadges}>
-              <span className={styles.projectRole}>{project.role}</span>
-              <span className={styles.projectTimeline}>{project.timeline}</span>
-            </div>
-          </div>
-          <p className={styles.oneLiner}>{project.oneLiner}</p>
-        </div>
+      {/* Top Gradient Edge Accent */}
+      <div className={styles.cinematicAccentBar} />
 
-        {/* 2-Column Split Dossier */}
-        <div className={styles.cardSplitLayout}>
-          {/* Left Column: Visual & Core Problem */}
-          <div className={styles.leftVisualCol}>
-            {/* The Visual Showcase */}
-            <ProjectCarousel 
-              projectSlug={project.slug} 
-              slides={project.slides} 
-              onOpenModal={handleOpenModal}
-            />
-            
-            {/* Engineering Narrative (Problem/Solution) */}
-            <div className={styles.narrativeBlock}>
-              <h4 className={styles.narrativeTitle}>Engineering Context</h4>
-              <p className={styles.narrativeText}><strong>Problem:</strong> {project.narrative.problem}</p>
-              <p className={styles.narrativeText}><strong>Solution:</strong> {project.narrative.goals[0]}</p>
-            </div>
-            
-            {/* Production Animated Counter Stats */}
-            <ProjectStats stats={project.stats} />
-          </div>
-
-          {/* Right Column: Technical Details */}
-          <div className={styles.rightInfoCol}>
-            {/* Engineering Highlights */}
-            {project.highlights && project.highlights.length > 0 && (
-              <div className={styles.highlightsContainer}>
-                <h4 className={styles.highlightsTitle}>Architecture & Engineering Impact</h4>
-                <ul className={styles.highlightsList}>
-                  {project.highlights.map((highlight, idx) => (
-                    <li key={idx}>
-                      <span className={styles.highlightCheck}>✓</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* Asymmetric 2-Column Grid Content */}
+      <div className={styles.cinematicGrid}>
+        {/* Left Column: Product Value Proposition & Hierarchy */}
+        <div className={styles.showcaseLeftCol}>
+          {/* Tag & Badges */}
+          <div className={styles.badgeRow}>
+            {project.isFlagship && (
+              <div className={styles.flagshipPill}>
+                <span className={styles.badgeDotPulse} />
+                <span>Flagship Platform</span>
               </div>
             )}
+            <span className={styles.rolePill}>{project.role}</span>
+            <span className={styles.timelinePill}>{project.timeline}</span>
+          </div>
 
-            {/* Tech Stack Hierarchical Pills */}
+          {/* Hero Headline */}
+          <h3 className={styles.saasTitle}>{project.name}</h3>
+
+          {/* Value Proposition */}
+          <p className={styles.saasOneLiner}>{project.oneLiner}</p>
+
+
+
+          {/* Technology Stack Pills */}
+          <div className={styles.saasTechWrapper}>
             <TechStackPills techSummary={project.techSummary} techStack={project.techStack} />
+          </div>
 
-            {/* Action Buttons Group */}
+          {/* Action CTAs */}
+          <div className={styles.saasActionsWrapper}>
             <ProjectButtons 
               githubUrl={project.githubUrl} 
               liveUrl={project.liveUrl} 
@@ -96,14 +100,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
             />
           </div>
         </div>
-      </div>
 
-      {/* Architecture Deep Dive Modal */}
-      <ProjectModal 
-        isOpen={modalOpen}
-        project={project}
-        onClose={() => setModalOpen(false)}
-      />
-    </>
+        {/* Right Column: Layered Floating Product Composition */}
+        <div className={styles.showcaseRightCol}>
+          <CinematicShowcase project={project} />
+        </div>
+      </div>
+    </motion.div>
   );
 }

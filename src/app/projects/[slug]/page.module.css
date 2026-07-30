@@ -6,6 +6,9 @@
 .breadcrumb {
   padding-top: var(--space-8);
   margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .backLink {
@@ -25,23 +28,109 @@
   color: var(--text-primary);
 }
 
+.flagshipTag {
+  padding: 4px 12px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-geist-mono);
+  font-size: 0.75rem;
+  color: #60a5fa;
+  font-weight: 500;
+}
+
 .main {
   max-width: var(--max-w-7xl, 1280px);
   margin: 0 auto;
   padding: 0 var(--space-8) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.achievementBanner {
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.achievementLabel {
+  font-family: var(--font-geist-mono);
+  font-size: 0.75rem;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.achievementBanner p {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.gallerySection, .statsSection, .perfSecSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 .sectionTitle {
-  font-size: var(--text-h2);
-  font-weight: 600;
-  margin-bottom: var(--space-8);
+  font-family: var(--font-geist);
+  font-size: var(--text-h2, 1.75rem);
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: var(--track-heading);
+  letter-spacing: var(--track-heading, -0.02em);
+  margin: 0;
+}
+
+.perfSecGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+.perfSecCard {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 0.25s ease;
+}
+
+.perfSecCard:hover {
+  border-color: var(--border-strong);
+}
+
+.cardHeaderIcon {
+  font-family: var(--font-geist-mono);
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.perfSecCard p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
 }
 
 .resultsSection, .lessonsSection {
-  padding: var(--space-12) 0;
-  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 .resultsList {
@@ -55,9 +144,9 @@
 
 .resultsList li {
   position: relative;
-  padding-left: var(--space-6);
-  font-size: var(--text-body-large);
-  line-height: var(--lh-body);
+  padding-left: var(--space-8);
+  font-size: var(--text-body-large, 1.05rem);
+  line-height: var(--lh-body, 1.6);
   color: var(--text-secondary);
 }
 
@@ -65,19 +154,33 @@
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--color-success, var(--text-primary));
+  color: #10b981;
   font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.lessonCard {
+  background: rgba(16, 185, 129, 0.04);
+  border-left: 3px solid #10b981;
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
 }
 
 .text {
-  font-size: var(--text-body-large);
-  line-height: var(--lh-body);
+  font-size: var(--text-body-large, 1.05rem);
+  line-height: var(--lh-body, 1.6);
   color: var(--text-secondary);
+  margin: 0;
 }
 
 @media (max-width: 768px) {
   .main {
     padding: 0 var(--space-4) var(--space-12);
+    gap: var(--space-8);
+  }
+
+  .perfSecGrid {
+    grid-template-columns: 1fr;
   }
 }
 

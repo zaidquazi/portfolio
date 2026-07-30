@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
 import { Work } from "../../components/Work";
-import { projects } from "../../data/projects";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
+import { SEO } from "../../data/seo.constants";
 
 export const metadata: Metadata = {
-  title: "Projects | Zaid Husain — Full Stack Developer Portfolio",
+  title: `Projects by ${SEO.PERSON_NAME} — Zashly, Zashio & Zashub | ${SEO.JOB_TITLE}`,
   description:
-    "Explore projects by Zaid Husain — Full Stack Developer. Includes Talent Nexus (React, Node.js, PostgreSQL, Supabase), Zashly (Socket.IO, WebRTC, MERN), Home Town Hub (MERN Stack). Demonstrating real-world software engineering skills.",
+    `Explore Zashly, Zashio & Zashub — production-grade platforms built by ${SEO.PERSON_NAME} using React, Node.js, MongoDB, PostgreSQL, Socket.IO & WebRTC.`,
   keywords: [
-    "Zaid Husain Projects",
-    "Full Stack Developer Portfolio",
+    `${SEO.PERSON_NAME} Projects`,
+    `${SEO.JOB_TITLE} Portfolio`,
+    "Zashly",
+    "Zashio",
+    "Zashub",
     "MERN Stack Projects",
     "React Node.js Projects",
     "Software Engineer Projects India",
-    "Talent Nexus",
-    "Zashly App",
     "WebRTC Project",
     "PostgreSQL Project",
     "Socket.IO Chat App",
@@ -26,64 +25,60 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: `${BASE_URL}/projects`,
-    title: "Projects | Zaid Husain — Full Stack Developer Portfolio",
+    url: `${SEO.SITE_URL}/projects`,
+    title: `Projects by ${SEO.PERSON_NAME} — Zashly, Zashio & Zashub`,
     description:
-      "Full Stack projects by Zaid Husain using React.js, Node.js, MongoDB, PostgreSQL, Socket.IO, and WebRTC. View case studies with architecture decisions and technical highlights.",
-    siteName: "Zaid Husain Portfolio",
+      `Explore Zashly, Zashio & Zashub — production-grade platforms built by ${SEO.PERSON_NAME}.`,
+    siteName: `${SEO.PERSON_NAME} Portfolio`,
     images: [
       {
-        url: `${BASE_URL}/opengraph-image.png`,
+        url: `${SEO.SITE_URL}/opengraph-image.png`,
         width: 1200,
         height: 630,
-        alt: "Zaid Husain — Projects Portfolio",
+        alt: `${SEO.PERSON_NAME} — Projects Portfolio`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Zaid Husain — Full Stack Developer",
+    title: `Projects by ${SEO.PERSON_NAME} — Zashly, Zashio & Zashub`,
     description:
-      "Full Stack projects by Zaid Husain: React, Node.js, MongoDB, Socket.IO, WebRTC. See case studies and architecture decisions.",
-    images: [`${BASE_URL}/twitter-image.png`],
+      `Explore Zashly, Zashio & Zashub — production-grade platforms built by ${SEO.PERSON_NAME}.`,
+    images: [`${SEO.SITE_URL}/twitter-image.png`],
   },
 };
 
 const collectionPageSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "@id": `${BASE_URL}/projects/#collectionpage`,
-  url: `${BASE_URL}/projects`,
-  name: "Projects — Zaid Husain Full Stack Developer Portfolio",
+  "@id": `${SEO.SITE_URL}/projects/#collectionpage`,
+  url: `${SEO.SITE_URL}/projects`,
+  name: `Projects — ${SEO.PERSON_NAME} ${SEO.JOB_TITLE} Portfolio`,
   description:
-    "A curated collection of Full Stack software projects by Zaid Husain, demonstrating expertise in React.js, Node.js, MongoDB, PostgreSQL, Socket.IO, and WebRTC.",
-  author: { "@id": `${BASE_URL}/#person` },
+    `A curated collection of software projects by ${SEO.PERSON_NAME}, including Zashly, Zashio, and Zashub.`,
+  author: { "@id": `${SEO.SITE_URL}/#person` },
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 1, name: "Home", item: SEO.SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
         name: "Projects",
-        item: `${BASE_URL}/projects`,
+        item: `${SEO.SITE_URL}/projects`,
       },
     ],
   },
-  hasPart: projects.map((project) => ({
-    "@type": "SoftwareSourceCode",
-    name: project.name,
-    description: project.oneLiner,
-    url: `${BASE_URL}/projects/${project.slug}`,
-    codeRepository: project.githubUrl,
-    programmingLanguage: project.techSummary,
-    author: { "@id": `${BASE_URL}/#person` },
-  })),
+  hasPart: [
+    { "@id": `${SEO.SITE_URL}/#zashly` },
+    { "@id": `${SEO.SITE_URL}/#zashio` },
+    { "@id": `${SEO.SITE_URL}/#zashub` },
+  ]
 };
 
 export default function ProjectsPage() {
   return (
-    <main id="main-content" aria-label="Projects by Zaid Husain">
+    <main id="main-content" aria-label={`Projects by ${SEO.PERSON_NAME}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -8,13 +8,16 @@ import { Experience } from "../components/Experience";
 import { Education } from "../components/Education";
 import { Achievements } from "../components/Achievements";
 import { Contact } from "../components/Contact";
+import { FAQ } from "../components/FAQ";
 import { Button } from "../components/ui/Button";
 import { ResumeButton } from "../components/ui/ResumeButton";
+import { SEO } from "../data/seo.constants";
+import { faqs } from "../data/faq";
 
 export const metadata: Metadata = {
-  title: "Zaid Husain | Full Stack Developer — React, Node.js, MERN Portfolio",
+  title: `${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} | Creator of Zashly, Zashio & Zashub`,
   description:
-    "Portfolio of Zaid Husain — Full Stack Developer from Amravati, Maharashtra, India. Specializes in React.js, Node.js, Express.js, MongoDB, PostgreSQL, TypeScript, and Python. Open to Full-Time, Internship, and Remote opportunities.",
+    `${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} building Zashly, Zashio & Zashub. Specializing in React, Node.js, MERN Stack, PostgreSQL & scalable architecture.`,
   alternates: {
     canonical: "/",
     languages: {
@@ -25,9 +28,26 @@ export const metadata: Metadata = {
   },
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function Home() {
   return (
-    <main id="main-content" className={styles.container} aria-label="Zaid Husain Portfolio Home">
+    <main id="main-content" className={styles.container} aria-label={`${SEO.PERSON_NAME} Portfolio Home`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className={styles.main}>
         {/* 1. HERO SECTION */}
         <section id="hero" aria-label="Introduction" className={styles.hero}>
@@ -39,21 +59,21 @@ export default function Home() {
               </div>
 
               <h1 className={`${styles.title} ${styles.cinematicReveal} ${styles.delay2}`}>
-                <span className={styles.titleLine}>Zaid Husain</span><br />
+                <span className={styles.titleLine}>{SEO.PERSON_NAME}</span><br />
                 <span className={styles.titleLine}>
-                  <span className={styles.highlightText}>Full-Stack Developer</span><br />
+                  <span className={styles.highlightText}>{SEO.JOB_TITLE}</span><br />
                 </span>
               </h1>
 
               <p className={`${styles.subtitle} ${styles.cinematicReveal} ${styles.delay3}`}>
-                Computer Science Engineer specializing in Full-Stack Web Development (React.js, Node.js, Express.js, MongoDB, SQL/MySQL, Python, TypeScript, Tailwind) with active focus on DevOps &amp; MLOps.
+                Engineering Zashly, Zashio & Zashub — production-grade platforms built with React, Node.js & modern web architecture.
               </p>
 
               <div className={`${styles.ctaGroup} ${styles.cinematicReveal} ${styles.delay4}`}>
                 <Button href="#work" variant="primary" size="lg">Explore Projects</Button>
                 <ResumeButton />
-                <Button href="https://github.com/zaidquazi" variant="ghost" size="md" target="_blank" rel="noopener noreferrer">GitHub ↗</Button>
-                <Button href="https://www.linkedin.com/in/zaid-husain-329596257/" variant="ghost" size="md" target="_blank" rel="noopener noreferrer">LinkedIn ↗</Button>
+                <Button href={SEO.SOCIAL.GITHUB} variant="ghost" size="md" target="_blank" rel="noopener noreferrer">GitHub ↗</Button>
+                <Button href={SEO.SOCIAL.LINKEDIN} variant="ghost" size="md" target="_blank" rel="noopener noreferrer">LinkedIn ↗</Button>
               </div>
             </div>
 
@@ -61,7 +81,8 @@ export default function Home() {
               <div className={styles.heroImageContainer}>
                 <Image 
                   src="/p1.png" 
-                  alt="Zaid Husain" 
+                  alt={`${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`} 
+                  title={`${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`}
                   fill 
                   className={styles.heroImage} 
                   priority 
@@ -91,7 +112,10 @@ export default function Home() {
         {/* 7. ACHIEVEMENTS & CERTIFICATIONS */}
         <Achievements />
 
-        {/* 7. CONTACT */}
+        {/* 8. FAQ */}
+        <FAQ />
+
+        {/* 9. CONTACT */}
         <Contact />
       </div>
     </main>

@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { projects } from "../data/projects";
+import { SEO } from "../data/seo.constants";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
+const BASE_URL = SEO.SITE_URL;
 const LAST_MODIFIED = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -39,12 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/resume`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${BASE_URL}/blog`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "weekly",
@@ -60,5 +54,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticPages, ...projectPages];
+  // Project Live URLs
+  const projectLivePages: MetadataRoute.Sitemap = [
+    {
+      url: SEO.PROJECTS.ZASHLY.URL,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: SEO.PROJECTS.ZASHIO.URL,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: SEO.PROJECTS.ZASHUB.URL,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
+
+  return [...staticPages, ...projectPages, ...projectLivePages];
 }

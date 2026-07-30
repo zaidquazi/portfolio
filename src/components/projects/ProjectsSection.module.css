@@ -132,6 +132,146 @@
   margin: 0 auto;
 }
 
+/* ═══════════════════════════════════════════
+   TIMELINE PATH — vertical rail between cards
+   ═══════════════════════════════════════════ */
+.timelinePath {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  /* 64px left margin for the node column */
+  padding-left: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10, 40px);
+}
+
+/* The vertical glowing rail — positioned at center of 64px left margin = 32px */
+.timelineRail {
+  position: absolute;
+  /* center of padding (64/2 = 32) minus half line width */
+  left: 31px;
+  top: 28px;
+  bottom: 20px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(59, 130, 246, 0.55) 6%,
+    rgba(59, 130, 246, 0.25) 50%,
+    rgba(147, 51, 234, 0.35) 90%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.18);
+  pointer-events: none;
+}
+
+/* Each card row */
+.timelineItem {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  /* No margin-bottom — gap on parent handles spacing */
+}
+
+/* Node circle — centered on the rail (left: 31px in .timelinePath)
+   node is 36px wide, so left edge = 31 - 18 = 13px from timelinePath
+   timelineItem starts at padding-left: 64px
+   so relative to timelineItem: 13 - 64 = -51px */
+.timelineNode {
+  position: absolute;
+  left: -51px;
+  top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  z-index: 3;
+}
+
+/* Pulsing outer ring for flagship projects */
+.timelineNodeRing {
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  animation: nodeRingPulse 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes nodeRingPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.18); }
+}
+
+/* Numbered inner dot */
+.timelineNodeInner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(99, 179, 237, 0.9);
+  background: rgba(10, 10, 15, 0.95);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  /* Dark ring gap separates node from rail */
+  box-shadow:
+    0 0 0 3px rgba(10, 10, 15, 0.9),
+    0 0 10px rgba(59, 130, 246, 0.15);
+  transition: color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.timelineItem:hover .timelineNodeInner {
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(10, 10, 15, 0.9),
+    0 0 18px rgba(59, 130, 246, 0.4);
+}
+
+/* Card wrapper fills remaining width — overflow visible so Reveal's
+   translateY doesn't create a clipping rect */
+.timelineCardWrapper {
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+}
+
+/* Terminal end dot */
+.timelineEnd {
+  position: absolute;
+  left: calc(31px - 3px);
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.4);
+  pointer-events: none;
+}
+
+/* Responsive: hide rail & nodes on small screens */
+@media (max-width: 640px) {
+  .timelinePath {
+    padding-left: 0;
+  }
+  .timelineRail,
+  .timelineNode,
+  .timelineEnd {
+    display: none;
+  }
+}
+
+
 .projectCard {
   position: relative;
   background: var(--surface-primary);
@@ -681,9 +821,9 @@
 /* Stats Counter Grid */
 .statsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-3);
-  padding: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4);
   background: var(--surface-secondary);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg, 12px);
@@ -1270,5 +1410,703 @@
   }
   .metaBadges {
     flex-wrap: wrap;
+  }
+}
+
+/* ---------------------------------------------------- */
+/* Expandable Card Layout (Apple x Linear x Vercel)     */
+/* ---------------------------------------------------- */
+
+.cardCollapsed {
+  max-height: 480px;
+  cursor: pointer;
+}
+
+.cardExpanded {
+  max-height: none;
+  cursor: default;
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.heroImageContainer {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.heroImageContainer:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center top;
+  transition: filter 0.3s ease;
+}
+
+.heroImageContainer:hover .heroImage {
+  filter: blur(2px) brightness(0.8);
+}
+
+.expandHintOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.heroImageContainer:hover .expandHintOverlay {
+  opacity: 1;
+}
+
+.expandHintOverlay span {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.heroTechAndActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.actionRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.expandBtn {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.expandBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* Expanded Content Sections */
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sectionHeading {
+  font-family: var(--font-geist);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+/* 1. Engineering Context Grid */
+.contextGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.contextCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: background 0.3s ease;
+}
+
+.contextCard:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.contextCard h5 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.contextCard p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 2. Architecture Timeline */
+.timelineGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+}
+
+.timelineCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timelineCard:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.timelineCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timelineContent h6 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.timelineContent p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 3. Challenges & Lessons */
+.challengesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.challengeBox {
+  padding: var(--space-4);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  border-left: 3px solid #10b981;
+}
+
+.challengeBox h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.challengeBox p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Tech Pill Expand Button */
+.techPillExpand {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+}
+.techPillExpand:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* Sticky Footer */
+.stickyFooter {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: var(--space-8);
+  padding: var(--space-4) 0 0 0;
+  background: linear-gradient(to top, var(--surface-primary) 60%, transparent);
+  border-top: 1px solid transparent;
+  z-index: 10;
+}
+
+.stickyFooterInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.collapseBtn {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collapseBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .contextGrid {
+    grid-template-columns: 1fr;
+  }
+  .challengesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------- */
+/* Cinematic SaaS Product Showcase (Apple x Stripe x Linear) */
+/* ---------------------------------------------------- */
+
+.cinematicCard {
+  position: relative;
+  background: rgba(13, 13, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: var(--space-8, 32px);
+  width: 100%;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.cinematicCard:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), 
+              0 0 40px rgba(59, 130, 246, 0.15);
+}
+
+.flagshipCinematic {
+  border-color: rgba(59, 130, 246, 0.25);
+  background: radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.05), transparent 50%),
+              rgba(13, 13, 16, 0.9);
+}
+
+.cursorSpotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 28px;
+  transition: opacity 0.3s ease;
+}
+
+.cinematicAccentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6 0%, #9333ea 50%, #10b981 100%);
+  opacity: 0.8;
+}
+
+.cinematicGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--space-8, 32px);
+  align-items: center;
+}
+
+.showcaseLeftCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 20px);
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  flex-wrap: wrap;
+}
+
+.flagshipPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: #60a5fa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badgeDotPulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: pulseGlow 2s infinite;
+}
+
+.rolePill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+}
+
+.timelinePill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-full);
+}
+
+.saasTitle {
+  font-family: var(--font-geist);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.saasOneLiner {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.saasStatsWrapper {
+  margin-top: var(--space-2);
+}
+
+.saasTechWrapper {
+  margin-top: var(--space-1);
+}
+
+.saasActionsWrapper {
+  margin-top: var(--space-3);
+}
+
+/* Right Column: Layered 3D Device Showcase Composition */
+.showcaseRightCol {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcaseWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ambientGlow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Layer 1: Desktop Browser Mockup Frame */
+.desktopFrame {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  height: 290px;
+  background: rgba(18, 18, 22, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  display: flex;
+  flex-direction: column;
+}
+
+.windowTitlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.windowDots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.windowAddressBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.windowStatusTag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #10b981;
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.desktopScreen {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.screenImage {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Layer 2: Overlapping Mobile Phone Mockup */
+.mobileFrame {
+  position: absolute;
+  z-index: 3;
+  bottom: 10px;
+  right: 10px;
+  width: 160px;
+  height: 290px;
+  background: rgba(10, 10, 12, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.9),
+              0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNotch {
+  height: 18px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobileSpeaker {
+  width: 32px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.mobileCamera {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.mobileScreen {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Layer 3: Floating Micro Glass Cards */
+.floatingBadge {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(20, 20, 26, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.badgeTopRight {
+  top: 15px;
+  right: -5px;
+}
+
+.badgeBottomLeft {
+  bottom: 25px;
+  left: -5px;
+}
+
+.badgeIcon {
+  font-size: 1rem;
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.badgeTitle {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badgeSubtitle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 1024px) {
+  .cinematicGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .showcaseRightCol {
+    min-height: 360px;
+  }
+  .showcaseWrapper {
+    height: 360px;
+  }
+  .desktopFrame {
+    width: 95%;
+    height: 250px;
+  }
+  .mobileFrame {
+    width: 140px;
+    height: 240px;
+    right: 0;
+    bottom: 5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cinematicCard {
+    padding: var(--space-5, 20px);
+    border-radius: 20px;
+  }
+  .saasTitle {
+    font-size: 1.75rem;
+  }
+  .floatingBadge {
+    display: none; /* Hide micro badges on very small screens to avoid clutter */
+  }
+  .mobileFrame {
+    display: none; /* Stack desktop only on small mobile */
+  }
+  .desktopFrame {
+    width: 100%;
+    height: 220px;
+  }
+  .showcaseWrapper, .showcaseRightCol {
+    height: 220px;
+    min-height: 220px;
   }
 }

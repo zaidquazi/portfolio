@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
+import { SEO } from "../data/seo.constants";
 
 export const runtime = "edge";
-export const alt = "Zaid Husain — Full Stack Developer Portfolio";
+export const alt = `${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} Portfolio`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -70,7 +71,7 @@ export default async function Image() {
             marginBottom: "12px",
           }}
         >
-          Zaid Husain
+          {SEO.PERSON_NAME}
         </div>
 
         {/* Title */}
@@ -82,7 +83,7 @@ export default async function Image() {
             marginBottom: "28px",
           }}
         >
-          Full Stack Developer
+          {SEO.JOB_TITLE}
         </div>
 
         {/* Description */}
@@ -95,8 +96,9 @@ export default async function Image() {
             marginBottom: "48px",
           }}
         >
-          React.js · Node.js · TypeScript · MongoDB · PostgreSQL · Python ·
-          Docker · WebRTC
+          Creator of Zashly · Zashio · Zashub
+          <br />
+          React.js · Node.js · TypeScript · MongoDB · PostgreSQL · WebRTC
         </div>
 
         {/* Location & Stack Row */}
@@ -116,11 +118,11 @@ export default async function Image() {
               gap: "6px",
             }}
           >
-            📍 Amravati, Maharashtra, India
+            📍 {SEO.LOCATION.locality}, {SEO.LOCATION.region}, {SEO.LOCATION.country}
           </span>
           <span style={{ color: "#374151", fontSize: "15px" }}>•</span>
           <span style={{ color: "#6b7280", fontSize: "15px" }}>
-            MERN Stack · TypeScript · DevOps
+            MERN Stack · TypeScript · Scalable Architecture
           </span>
         </div>
 
@@ -134,7 +136,7 @@ export default async function Image() {
             fontSize: "14px",
           }}
         >
-          zaid-husain.dev
+          {new URL(SEO.SITE_URL).hostname}
         </div>
       </div>
     ),

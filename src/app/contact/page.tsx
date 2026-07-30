@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
 import { Contact } from "../../components/Contact";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
+import { SEO } from "../../data/seo.constants";
 
 export const metadata: Metadata = {
-  title: "Contact Zaid Husain | Full Stack Developer — Hire Me",
+  title: `Contact ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} | Hire for Engineering Roles`,
   description:
-    "Get in touch with Zaid Husain — Full Stack Developer from Amravati, India. Open to Full-Time, Internship, Freelance, and Remote software engineering opportunities. Reach out via email or phone.",
+    `Get in touch with ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} & creator of Zashly, Zashio, Zashub. Open to full-time, remote & freelance engineering roles.`,
   keywords: [
-    "Contact Zaid Husain",
-    "Hire Zaid Husain",
-    "Full Stack Developer for Hire",
+    `Contact ${SEO.PERSON_NAME}`,
+    `Hire ${SEO.PERSON_NAME}`,
+    `${SEO.JOB_TITLE} for Hire`,
     "React Node.js Developer India",
     "Software Engineer for Hire India",
     "MERN Developer Contact",
-    "Zaid Husain Email",
+    `${SEO.PERSON_NAME} Email`,
   ],
   alternates: {
     canonical: "/contact",
@@ -22,48 +21,48 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: `${BASE_URL}/contact`,
-    title: "Contact Zaid Husain | Full Stack Developer — Hire Me",
+    url: `${SEO.SITE_URL}/contact`,
+    title: `Contact ${SEO.PERSON_NAME} | ${SEO.JOB_TITLE} — Hire Me`,
     description:
-      "Open to Full-Time, Internship, Freelance, and Remote software engineering opportunities. Contact Zaid Husain — Full Stack Developer, MERN Stack, React, Node.js.",
-    siteName: "Zaid Husain Portfolio",
+      `Open to full-time, remote & freelance engineering roles. Contact ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}, creator of Zashly, Zashio, Zashub.`,
+    siteName: `${SEO.PERSON_NAME} Portfolio`,
     images: [
       {
-        url: `${BASE_URL}/opengraph-image.png`,
+        url: `${SEO.SITE_URL}/opengraph-image.png`,
         width: 1200,
         height: 630,
-        alt: "Contact Zaid Husain — Full Stack Developer",
+        alt: `Contact ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Zaid Husain | Full Stack Developer",
+    title: `Contact ${SEO.PERSON_NAME} | ${SEO.JOB_TITLE}`,
     description:
-      "Hire Zaid Husain — Full Stack Developer open to Full-Time, Internship, and Freelance opportunities. Based in India.",
-    images: [`${BASE_URL}/twitter-image.png`],
+      `Hire ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE} open to Full-Time, Remote, and Freelance engineering roles. Based in India.`,
+    images: [`${SEO.SITE_URL}/twitter-image.png`],
   },
 };
 
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  "@id": `${BASE_URL}/contact/#contactpage`,
-  url: `${BASE_URL}/contact`,
-  name: "Contact Zaid Husain — Full Stack Developer",
+  "@id": `${SEO.SITE_URL}/contact/#contactpage`,
+  url: `${SEO.SITE_URL}/contact`,
+  name: `Contact ${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`,
   description:
-    "Contact page for Zaid Husain, Full Stack Developer from Amravati, Maharashtra, India. Open to Full-Time, Internship, Freelance, and Remote software engineering opportunities.",
-  isPartOf: { "@id": `${BASE_URL}/#website` },
-  about: { "@id": `${BASE_URL}/#person` },
+    `Contact page for ${SEO.PERSON_NAME}, ${SEO.JOB_TITLE} from ${SEO.LOCATION.locality}, ${SEO.LOCATION.region}, ${SEO.LOCATION.country}. Open to full-time, remote & freelance engineering roles.`,
+  isPartOf: { "@id": `${SEO.SITE_URL}/#website` },
+  about: { "@id": `${SEO.SITE_URL}/#person` },
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 1, name: "Home", item: SEO.SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
         name: "Contact",
-        item: `${BASE_URL}/contact`,
+        item: `${SEO.SITE_URL}/contact`,
       },
     ],
   },
@@ -71,7 +70,7 @@ const contactPageSchema = {
 
 export default function ContactPage() {
   return (
-    <main id="main-content" aria-label="Contact Zaid Husain">
+    <main id="main-content" aria-label={`Contact ${SEO.PERSON_NAME}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}

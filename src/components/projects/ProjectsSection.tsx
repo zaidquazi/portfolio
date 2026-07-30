@@ -77,14 +77,36 @@ export function ProjectsSection() {
         </div>
       </Reveal>
 
-      {/* Project Cards List */}
-      <div className={styles.projectsList}>
+      {/* Project Cards with Timeline Path */}
+      <div className={styles.timelinePath}>
+        {/* The vertical line */}
+        <div className={styles.timelineRail} aria-hidden="true" />
+
         {filteredProjects.map((project, index) => (
-          <Reveal key={project.slug} delay={index * 120} animation="fade-up">
-            <ProjectCard project={project} />
-          </Reveal>
+          <div key={project.slug} className={styles.timelineItem}>
+            {/* Node sits directly on timelineItem — NOT inside Reveal
+                so animation transforms don't displace it */}
+            <div className={styles.timelineNode} aria-hidden="true">
+              <div className={styles.timelineNodeInner}>
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              {project.isFlagship && <div className={styles.timelineNodeRing} />}
+            </div>
+
+            {/* Only the card gets the scroll-reveal animation */}
+            <Reveal delay={index * 120} animation="fade-up">
+              <div className={styles.timelineCardWrapper}>
+                <ProjectCard project={project} />
+              </div>
+            </Reveal>
+          </div>
         ))}
+
+        {/* Terminal dot at the end */}
+        <div className={styles.timelineEnd} aria-hidden="true" />
       </div>
+
     </Section>
   );
 }
+

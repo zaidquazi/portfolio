@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { GlobalHeader, SkipLink } from '../navigation';
 import { GlobalFooter } from './GlobalFooter';
 import { CommandPalette } from '../command/CommandPalette';
@@ -15,9 +15,7 @@ export function GlobalLayout({ children }: GlobalLayoutProps) {
       <div className={styles.wrapper}>
         <GlobalHeader />
         <main id="main-content" className={styles.mainContent}>
-          <Suspense fallback={null}>
-            {children}
-          </Suspense>
+          {children}
         </main>
         <GlobalFooter />
       </div>

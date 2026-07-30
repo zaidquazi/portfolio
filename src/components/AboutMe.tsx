@@ -5,18 +5,19 @@ import Image from 'next/image';
 import { Section } from './ui/layout/Section';
 import { Reveal } from './ui/motion/Reveal';
 import styles from './AboutMe.module.css';
+import { SEO } from '../data/seo.constants';
 
 export function AboutMe() {
   const [copied, setCopied] = useState(false);
 
   const profileJson = JSON.stringify(
     {
-      engineer: "Zaid Husain",
-      title: "Full-Stack Software Engineer",
+      engineer: SEO.PERSON_NAME,
+      title: SEO.JOB_TITLE,
       degree: "B.Tech CS Engineering (2024-2028)",
-      location: "Amravati, India",
-      coreStack: ["React.js", "Node.js", "Express.js", "MongoDB", "SQL","TypeScript", "Python"],
-      internship: "3 Months MERN Developer Internship",
+      location: `${SEO.LOCATION.locality}, ${SEO.LOCATION.country}`,
+      coreStack: ["React.js", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "TypeScript", "Python"],
+      built: ["Zashly", "Zashio", "Zashub"],
       status: "Available for Full-Time Roles"
     },
     null,
@@ -38,7 +39,7 @@ export function AboutMe() {
             Engineering Scalable Systems with Clean Architecture.
           </h2>
           <p className={styles.subtitle}>
-            Computer Science Engineer focused on building production-ready full-stack software. I specialize in designing structured REST APIs, optimizing database performance, and crafting resilient web applications with long-term maintainability in mind.
+            {SEO.JOB_TITLE} focused on building production-ready modern web applications. I specialize in designing structured REST APIs, optimizing database performance, and crafting resilient software with long-term maintainability in mind.
           </p>
         </div>
       </Reveal>
@@ -71,15 +72,15 @@ export function AboutMe() {
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '40ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;engineer&quot;</span>: <span className={styles.codeString}>&quot;Zaid Husain&quot;</span>,
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;engineer&quot;</span>: <span className={styles.codeString}>&quot;{SEO.PERSON_NAME}&quot;</span>,
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '80ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;role&quot;</span>: <span className={styles.codeString}>&quot;Full-Stack Software Engineer&quot;</span>,
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;role&quot;</span>: <span className={styles.codeString}>&quot;{SEO.JOB_TITLE}&quot;</span>,
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '120ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;currentlyBuilding&quot;</span>: <span className={styles.codeString}>&quot;Talent Nexus&quot;</span>,
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;built&quot;</span>: [<span className={styles.codeString}>&quot;Zashly&quot;</span>, <span className={styles.codeString}>&quot;Zashio&quot;</span>, <span className={styles.codeString}>&quot;Zashub&quot;</span>],
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '160ms' }}>
@@ -87,11 +88,11 @@ export function AboutMe() {
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '200ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;coreStack&quot;</span>: [<span className={styles.codeString}>&quot;React&quot;</span>, <span className={styles.codeString}>&quot;Node&quot;</span>, <span className={styles.codeString}>&quot;Express&quot;</span>, <span className={styles.codeString}>&quot;MongoDB&quot;</span>, <span className={styles.codeString}>&quot;SQL&quot;</span>, <span className={styles.codeString}>&quot;TypeScript&quot;</span>, <span className={styles.codeString}>&quot;Python&quot;</span>],
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;coreStack&quot;</span>: [<span className={styles.codeString}>&quot;React&quot;</span>, <span className={styles.codeString}>&quot;Node&quot;</span>, <span className={styles.codeString}>&quot;Express&quot;</span>, <span className={styles.codeString}>&quot;MongoDB&quot;</span>, <span className={styles.codeString}>&quot;PostgreSQL&quot;</span>, <span className={styles.codeString}>&quot;TypeScript&quot;</span>],
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '240ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;editor&quot;</span>: <span className={styles.codeString}>&quot;VS Code&quot;</span>,
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;tools&quot;</span>: [<span className={styles.codeString}>&quot;Docker&quot;</span>, <span className={styles.codeString}>&quot;Git&quot;</span>, <span className={styles.codeString}>&quot;GitHub&quot;</span>, <span className={styles.codeString}>&quot;Supabase&quot;</span>],
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '280ms' }}>
@@ -111,7 +112,7 @@ export function AboutMe() {
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '440ms' }}>
-        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;commitMessage&quot;</span>: <span className={styles.codeString}>&quot;fix: one bug, introduce another&quot;</span>,
+        &nbsp;&nbsp;<span className={styles.codeKey}>&quot;commitMessage&quot;</span>: <span className={styles.codeString}>&quot;feat: engineered another feature&quot;</span>,
       </div>
 
       <div className={styles.codeLine} style={{ animationDelay: '480ms' }}>
@@ -131,7 +132,7 @@ export function AboutMe() {
   <div className={styles.terminalImageContainer}>
     <Image 
       src="/chair.png" 
-      alt="Developer Workstation" 
+      alt={`${SEO.PERSON_NAME} Workstation`} 
       width={500} 
       height={300} 
       className={styles.terminalImage}
@@ -157,12 +158,12 @@ export function AboutMe() {
                 <h3 className={styles.pillarTitle}>Backend &amp; API Engineering</h3>
               </div>
               <p className={styles.pillarDesc}>
-                Designing structured RESTful APIs with Express.js, implementing JWT authentication, role-based access control (RBAC), robust payload validation, and clean service-layer abstractions for scalable server applications.
+                Designing structured RESTful APIs with Node.js and Express.js, implementing JWT authentication, role-based access control (RBAC), robust payload validation, and clean service-layer abstractions for scalable server applications like Zashly.
               </p>
               <div className={styles.pillarBadges}>
                 <span className={styles.pillarBadge}>REST APIs</span>
                 <span className={styles.pillarBadge}>JWT Auth</span>
-                <span className={styles.pillarBadge}>Express.js</span>
+                <span className={styles.pillarBadge}>Node.js</span>
                 <span className={styles.pillarBadge}>RBAC</span>
                 <span className={styles.pillarBadge}>API Validation</span>
                 <span className={styles.pillarBadge}>Architecture</span>
@@ -177,7 +178,7 @@ export function AboutMe() {
                 <h3 className={styles.pillarTitle}>Database &amp; System Design</h3>
               </div>
               <p className={styles.pillarDesc}>
-                Structuring relational and document database schemas using PostgreSQL, MongoDB, and Supabase. Focused on entity modeling, index optimization, data normalization, and query performance in production environments.
+                Structuring relational and document database schemas using PostgreSQL, MongoDB, and Supabase. Focused on entity modeling, index optimization, data normalization, and query performance in production environments like Zashio and Zashub.
               </p>
               <div className={styles.pillarBadges}>
                 <span className={styles.pillarBadge}>PostgreSQL</span>
@@ -196,15 +197,15 @@ export function AboutMe() {
                 <h3 className={styles.pillarTitle}>Engineering Principles</h3>
               </div>
               <p className={styles.pillarDesc}>
-                Writing modular, self-documenting code with clear separation of concerns, performance optimizations, type safety, and accessibility standards to build maintainable software systems.
+                Writing modular, self-documenting code with clear separation of concerns, performance optimizations, type safety, and accessibility standards to build maintainable, AI-powered software systems.
               </p>
               <div className={styles.pillarBadges}>
                 <span className={styles.pillarBadge}>Clean Code</span>
                 <span className={styles.pillarBadge}>Performance</span>
                 <span className={styles.pillarBadge}>Scalability</span>
                 <span className={styles.pillarBadge}>Maintainability</span>
-                <span className={styles.pillarBadge}>Accessibility</span>
-                <span className={styles.pillarBadge}>Architecture</span>
+                <span className={styles.pillarBadge}>AI Applications</span>
+                <span className={styles.pillarBadge}>Production Ready</span>
               </div>
             </div>
           </Reveal>

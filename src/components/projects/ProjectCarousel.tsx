@@ -8,7 +8,7 @@ import { ProjectMockup } from './ProjectMockup';
 interface ProjectCarouselProps {
   projectSlug: string;
   slides: ProjectSlide[];
-  onOpenModal: () => void;
+  onOpenModal?: () => void;
 }
 
 export function ProjectCarousel({ projectSlug, slides, onOpenModal }: ProjectCarouselProps) {

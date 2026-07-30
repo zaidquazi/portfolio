@@ -1,16 +1,16 @@
 /* TEAM */
 Developer: Zaid Husain
-Role: Full Stack Developer
+Role: Full-Stack Software Engineer
 Location: Amravati, Maharashtra, India
 Email: zaidquazi412@gmail.com
-GitHub: https://github.com/zaidquazi
-LinkedIn: https://www.linkedin.com/in/zaid-husain-329596257/
+GitHub: https://github.com/zaid-husain
+LinkedIn: https://www.linkedin.com/in/zaid-husain/
 
 /* SITE */
-Last update: 2024
+Last update: 2026
 Language: English
 Standards: HTML5, CSS3, JSON-LD
 Components: React.js, Next.js, TypeScript
 Design: Custom architecture with bespoke CSS Modules
-Repository: https://github.com/zaidquazi/portfolio (Placeholder)
+Repository: https://github.com/zaid-husain/portfolio
 URL: https://zaidhusainonline.vercel.app

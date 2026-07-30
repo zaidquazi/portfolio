@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MobileMenu } from './MobileMenu';
 import { NavDropdown } from './NavDropdown';
 import styles from './GlobalHeader.module.css';
+import { SEO } from '../../data/seo.constants';
 
 export function GlobalHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,6 +40,7 @@ export function GlobalHeader() {
           <Link 
             href="/" 
             className={styles.logo}
+            aria-label={`${SEO.PERSON_NAME} Portfolio Home`}
             onClick={(e) => {
               if (window.location.pathname === '/') {
                 e.preventDefault();
@@ -51,10 +53,10 @@ export function GlobalHeader() {
 
           <nav className={styles.desktopNav} aria-label="Primary Navigation">
             <ul className={styles.navList}>
-              <li><Link href="/#about" className={styles.navLink}>About</Link></li>
-              <li><Link href="/#skills" className={styles.navLink}>Skills</Link></li>
-              <li><Link href="/#work" className={styles.navLink}>Projects</Link></li>
-              <li><Link href="/#contact" className={styles.navLink}>Contact</Link></li>
+              <li><Link href="/about" className={styles.navLink}>About</Link></li>
+              <li><Link href="/projects" className={styles.navLink}>Projects</Link></li>
+              <li><Link href="/experience" className={styles.navLink}>Experience</Link></li>
+              <li><Link href="/contact" className={styles.navLink}>Contact</Link></li>
               <li><NavDropdown /></li>
             </ul>
             <div className={styles.actions}>

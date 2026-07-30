@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { projects } from "../../../data/projects";
+import { SEO } from "../../../data/seo.constants";
 import styles from "./page.module.css";
 import {
   CaseStudyHero,
@@ -12,8 +13,9 @@ import {
   EngineeringDecisions,
   ProjectNavigation,
 } from "../../../components/case-study";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
+import { ProjectCarousel } from "../../../components/projects/ProjectCarousel";
+import { ProjectStats } from "../../../components/projects/ProjectStats";
+import { Reveal } from "../../../components/ui/motion/Reveal";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -31,27 +33,22 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "Project Not Found | Zaid Husain",
+      title: `Project Not Found | ${SEO.PERSON_NAME}`,
       robots: { index: false, follow: false },
     };
   }
 
-  const techKeywords = project.techSummary.map(
-    (t) => `${t} project by Zaid Husain`
-  );
-  const url = `${BASE_URL}/projects/${project.slug}`;
+  const url = `${SEO.SITE_URL}/projects/${project.slug}`;
 
   return {
-    title: `${project.name} | ${project.role} — Zaid Husain`,
-    description: project.oneLiner,
+    title: project.seoTitle || `${project.name} | ${project.role} — ${SEO.PERSON_NAME}`,
+    description: project.seoDescription || project.oneLiner,
     keywords: [
-      `Zaid Husain ${project.name}`,
+      ...(project.seoKeywords || []),
+      `${SEO.PERSON_NAME} ${project.name}`,
       project.name,
-      project.role,
       ...project.techSummary,
-      ...techKeywords,
-      "Zaid Husain Portfolio",
-      "Full Stack Developer Project India",
+      `${SEO.PERSON_NAME} Portfolio`,
     ],
     alternates: {
       canonical: `/projects/${project.slug}`,
@@ -63,23 +60,23 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       url,
-      title: `${project.name} — Case Study | Zaid Husain`,
-      description: project.oneLiner,
-      siteName: "Zaid Husain Portfolio",
+      title: project.seoTitle || `${project.name} — Deep Architecture Case Study | ${SEO.PERSON_NAME}`,
+      description: project.seoDescription || project.oneLiner,
+      siteName: `${SEO.PERSON_NAME} Portfolio`,
       images: [
         {
-          url: `${BASE_URL}/opengraph-image.png`,
+          url: `${SEO.SITE_URL}/opengraph-image.png`,
           width: 1200,
           height: 630,
-          alt: `${project.name} — ${project.role} by Zaid Husain`,
+          alt: `${project.name} — ${project.role} by ${SEO.PERSON_NAME}`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${project.name} | Zaid Husain`,
-      description: project.oneLiner,
-      images: [`${BASE_URL}/twitter-image.png`],
+      title: project.seoTitle || `${project.name} | ${SEO.PERSON_NAME}`,
+      description: project.seoDescription || project.oneLiner,
+      images: [`${SEO.SITE_URL}/twitter-image.png`],
     },
   };
 }
@@ -111,55 +108,36 @@ export default async function ProjectCaseStudy({
     ...project.techStack.tooling,
   ];
 
-  const projectUrl = `${BASE_URL}/projects/${project.slug}`;
+  const projectUrl = `${SEO.SITE_URL}/projects/${project.slug}`;
 
   const projectSchema = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "SoftwareSourceCode",
-        "@id": `${projectUrl}/#sourcecode`,
+        "@type": "WebApplication",
+        "@id": `${projectUrl}/#webapplication`,
         name: project.name,
-        description: project.oneLiner,
-        url: projectUrl,
+        description: project.seoDescription || project.oneLiner,
+        url: project.liveUrl || projectUrl,
+        applicationCategory: "WebApplication",
+        creator: { "@id": `${SEO.SITE_URL}/#person` },
+        author: { "@id": `${SEO.SITE_URL}/#person` },
+        publisher: { "@id": `${SEO.SITE_URL}/#person` },
         codeRepository: project.githubUrl,
-        installUrl: project.liveUrl || undefined,
-        programmingLanguage: project.techSummary,
-        runtimePlatform: project.techStack.infrastructure,
-        author: { "@id": `${BASE_URL}/#person` },
-        creator: { "@id": `${BASE_URL}/#person` },
-        dateCreated: project.timeline,
-        keywords: project.techSummary.join(", "),
-      },
-      {
-        "@type": "CreativeWork",
-        "@id": `${projectUrl}/#creativework`,
-        name: `${project.name} — Case Study`,
-        description: project.narrative.problem,
-        url: projectUrl,
-        author: { "@id": `${BASE_URL}/#person` },
-        creator: { "@id": `${BASE_URL}/#person` },
-        dateCreated: project.timeline,
+        operatingSystem: "Any",
+        softwareRequirements: project.techSummary.join(", "),
         keywords: allTechStack.join(", "),
-        about: {
-          "@type": "SoftwareApplication",
-          name: project.name,
-          description: project.oneLiner,
-          url: project.liveUrl || projectUrl,
-          applicationCategory: "WebApplication",
-          operatingSystem: "Any",
-          softwareRequirements: project.techSummary.join(", "),
-        },
+        isPartOf: { "@id": `${SEO.SITE_URL}/#website` },
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+          { "@type": "ListItem", position: 1, name: "Home", item: SEO.SITE_URL },
           {
             "@type": "ListItem",
             position: 2,
             name: "Projects",
-            item: `${BASE_URL}/projects`,
+            item: `${SEO.SITE_URL}/#work`,
           },
           {
             "@type": "ListItem",
@@ -179,12 +157,17 @@ export default async function ProjectCaseStudy({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
       />
       <div className={styles.main}>
+        {/* Navigation Breadcrumb */}
         <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
           <Link href="/#work" className={styles.backLink}>
             ← Back to Projects
           </Link>
+          {project.isFlagship && (
+            <span className={styles.flagshipTag}>⚡ Flagship Deep Dive</span>
+          )}
         </nav>
 
+        {/* Hero Section */}
         <CaseStudyHero
           name={project.name}
           oneLiner={project.oneLiner}
@@ -194,45 +177,112 @@ export default async function ProjectCaseStudy({
           githubUrl={project.githubUrl}
         />
 
+        {/* Primary Achievement Banner */}
+        {project.primaryAchievement && (
+          <Reveal>
+            <div className={styles.achievementBanner}>
+              <span className={styles.achievementLabel}>Core Engineering Achievement</span>
+              <p>{project.primaryAchievement}</p>
+            </div>
+          </Reveal>
+        )}
+
+        {/* Interactive Screenshot Showcase Carousel */}
+        {project.slides && project.slides.length > 0 && (
+          <Reveal>
+            <section className={styles.gallerySection}>
+              <h2 className={styles.sectionTitle}>System Interface & Feature Tour</h2>
+              <ProjectCarousel 
+                projectSlug={project.slug} 
+                slides={project.slides}
+              />
+            </section>
+          </Reveal>
+        )}
+
+        {/* Animated Performance Metrics & Stats */}
+        {project.stats && project.stats.length > 0 && (
+          <Reveal>
+            <section className={styles.statsSection}>
+              <h2 className={styles.sectionTitle}>Production Stats</h2>
+              <ProjectStats stats={project.stats} />
+            </section>
+          </Reveal>
+        )}
+
         {project.metrics && <MetricsGrid metrics={project.metrics} />}
 
+        {/* Engineering Challenge & Goals */}
         <ProjectOverview
           problem={project.narrative.problem}
           goals={project.narrative.goals}
         />
 
+        {/* Categorized Tech Stack */}
         {project.techStack && <TechStack techStack={project.techStack} />}
 
+        {/* Deep Architecture Breakdown */}
         <ArchitectureSection
           frontend={project.narrative.architecture.frontend}
           backend={project.narrative.architecture.backend}
           database={project.narrative.architecture.database}
         />
 
-        {project.narrative.decisions &&
-          project.narrative.decisions.length > 0 && (
-            <EngineeringDecisions decisions={project.narrative.decisions} />
-          )}
+        {/* Performance & Security Architecture Cards */}
+        {(project.narrative.performance || project.narrative.security) && (
+          <Reveal>
+            <section className={styles.perfSecSection}>
+              <h2 className={styles.sectionTitle}>Performance & Security Architecture</h2>
+              <div className={styles.perfSecGrid}>
+                {project.narrative.performance && (
+                  <div className={styles.perfSecCard}>
+                    <div className={styles.cardHeaderIcon}>⚡ Performance & Scalability</div>
+                    <p>{project.narrative.performance}</p>
+                  </div>
+                )}
+                {project.narrative.security && (
+                  <div className={styles.perfSecCard}>
+                    <div className={styles.cardHeaderIcon}>🔒 Security & Access Control</div>
+                    <p>{project.narrative.security}</p>
+                  </div>
+                )}
+              </div>
+            </section>
+          </Reveal>
+        )}
 
-        {project.narrative.results &&
-          project.narrative.results.length > 0 && (
+        {/* Trade-offs & Engineering Decisions */}
+        {project.narrative.decisions && project.narrative.decisions.length > 0 && (
+          <EngineeringDecisions decisions={project.narrative.decisions} />
+        )}
+
+        {/* Key Results & Impact */}
+        {project.narrative.results && project.narrative.results.length > 0 && (
+          <Reveal>
             <section className={styles.resultsSection}>
-              <h2 className={styles.sectionTitle}>Key Results</h2>
+              <h2 className={styles.sectionTitle}>Key Results & Production Impact</h2>
               <ul className={styles.resultsList}>
                 {project.narrative.results.map((result, i) => (
                   <li key={i}>{result}</li>
                 ))}
               </ul>
             </section>
-          )}
-
-        {project.narrative.lessonsLearned && (
-          <section className={styles.lessonsSection}>
-            <h2 className={styles.sectionTitle}>Lessons Learned</h2>
-            <p className={styles.text}>{project.narrative.lessonsLearned}</p>
-          </section>
+          </Reveal>
         )}
 
+        {/* Lessons Learned */}
+        {project.narrative.lessonsLearned && (
+          <Reveal>
+            <section className={styles.lessonsSection}>
+              <h2 className={styles.sectionTitle}>Engineering Takeaways & Lessons Learned</h2>
+              <div className={styles.lessonCard}>
+                <p className={styles.text}>{project.narrative.lessonsLearned}</p>
+              </div>
+            </section>
+          </Reveal>
+        )}
+
+        {/* Navigation to Next/Prev Projects */}
         <ProjectNavigation prevProject={prevProject} nextProject={nextProject} />
       </div>
     </div>
