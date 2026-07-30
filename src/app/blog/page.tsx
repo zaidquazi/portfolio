@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   title: "Blog | Zaid Husain — Full Stack Developer Technical Writing",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Work } from "../../components/Work";
 import { projects } from "../../data/projects";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   title: "Projects | Zaid Husain — Full Stack Developer Portfolio",

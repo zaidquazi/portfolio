@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AboutMe } from "../../components/AboutMe";
 import { TechnicalSkills } from "../../components/TechnicalSkills";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   title: "About Zaid Husain | Full Stack Developer — Amravati, India",

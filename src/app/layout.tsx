@@ -26,7 +26,7 @@ const inter = Inter({
   preload: false,
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

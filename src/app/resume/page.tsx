@@ -9,7 +9,7 @@ import { Contact } from "../../components/Contact";
 import { Button } from "../../components/ui/Button";
 import styles from "./page.module.css";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   title: "Zaid Husain | Resume & Full Stack Portfolio",

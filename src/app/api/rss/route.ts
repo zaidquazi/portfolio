@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 // Future blog posts will be loaded from a CMS or data file.
 // For now we expose the feed with portfolio metadata so RSS aggregators

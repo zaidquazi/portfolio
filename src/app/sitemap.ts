@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { projects } from "../data/projects";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 const LAST_MODIFIED = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Experience } from "../../components/Experience";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export const metadata: Metadata = {
   title: "Experience | Zaid Husain — Full Stack Developer Engineering Journey",

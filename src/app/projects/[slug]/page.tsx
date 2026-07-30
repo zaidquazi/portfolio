@@ -13,7 +13,7 @@ import {
   ProjectNavigation,
 } from "../../../components/case-study";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://zaidhusainonline.vercel.app";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
