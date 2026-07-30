@@ -56,7 +56,7 @@ export function CommandPalette() {
     { id: 'exp', label: 'Go to Professional Experience', action: () => { router.push('/#experience'); closePalette(); } },
     { id: 'achievements', label: 'Go to Credentials & Achievements', action: () => { router.push('/#achievements'); closePalette(); } },
     { id: 'contact', label: 'Go to Contact', action: () => { router.push('/#contact'); closePalette(); } },
-    { id: 'resume', label: 'Open Resume (PDF)', action: () => { window.open('/resume.pdf', '_blank'); closePalette(); } },
+    { id: 'resume', label: 'Open Resume', action: () => { window.open('/resume.jpg', '_blank'); closePalette(); } },
     { id: 'github', label: 'Open GitHub Profile', action: () => { window.open('https://github.com/zaidhusain', '_blank'); closePalette(); } },
     { id: 'linkedin', label: 'Open LinkedIn Profile', action: () => { window.open('https://www.linkedin.com/in/zaid-husain-329596257/', '_blank'); closePalette(); } },
     { id: 'email', label: 'Send Email Direct', action: () => { window.open('mailto:zaidquazi412@gmail.com'); closePalette(); } },

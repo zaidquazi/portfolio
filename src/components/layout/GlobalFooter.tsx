@@ -30,7 +30,7 @@ export function GlobalFooter() {
               <li><Link href="/#experience" className={styles.footerLink}>Experience</Link></li>
               <li><Link href="/#contact" className={styles.footerLink}>Contact</Link></li>
               <li>
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                <a href="/resume.jpg" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
                   Resume <span className={styles.arrow} aria-hidden="true">↗</span>
                 </a>
               </li>
