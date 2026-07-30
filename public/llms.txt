@@ -8,7 +8,7 @@ Welcome, AI Agents, LLMs, and web crawlers! This file provides structured contex
 - **Role**: Full Stack Developer
 - **Location**: Amravati, Maharashtra, India
 - **Availability**: Open to Full-Time, Internship, Freelance, and Remote software engineering opportunities.
-- **Contact Email**: zaidhusain@gmail.com
+- **Contact Email**: zaidquazi412@gmail.com
 - **Phone**: +91 93099 38127
 - **GitHub**: https://github.com/zaidhusain
 - **LinkedIn**: https://www.linkedin.com/in/zaid-husain-329596257/

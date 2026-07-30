@@ -10,7 +10,7 @@
 | :--- | :--- |
 | **Engineer Name** | Zaid Husain |
 | **Location** | Amravati, Maharashtra, India |
-| **Email** | zaidhusain@gmail.com |
+| **Email** | zaidquazi412@gmail.com |
 | **Phone** | +91 9309938127 |
 | **Package Name** | `portfolio` |
 | **Current Version** | `1.0.0` |

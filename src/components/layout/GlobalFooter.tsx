@@ -57,7 +57,7 @@ export function GlobalFooter() {
                 </a>
               </li>
               <li>
-                <a href="mailto:zaidhusain@gmail.com" className={styles.footerLink}>
+                <a href="mailto:zaidquazi412@gmail.com" className={styles.footerLink}>
                   Email
                 </a>
               </li>

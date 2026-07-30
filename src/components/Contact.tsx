@@ -9,7 +9,7 @@ export function Contact() {
   const [emailCopied, setEmailCopied] = useState(false);
   const [phoneCopied, setPhoneCopied] = useState(false);
 
-  const email = "zaidhusain@gmail.com";
+  const email = "zaidquazi412@gmail.com";
   const phone = "+91 93099 38127";
 
   const handleCopyEmail = () => {

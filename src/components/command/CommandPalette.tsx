@@ -59,7 +59,7 @@ export function CommandPalette() {
     { id: 'resume', label: 'Open Resume (PDF)', action: () => { window.open('/resume.pdf', '_blank'); closePalette(); } },
     { id: 'github', label: 'Open GitHub Profile', action: () => { window.open('https://github.com/zaidhusain', '_blank'); closePalette(); } },
     { id: 'linkedin', label: 'Open LinkedIn Profile', action: () => { window.open('https://www.linkedin.com/in/zaid-husain-329596257/', '_blank'); closePalette(); } },
-    { id: 'email', label: 'Send Email Direct', action: () => { window.open('mailto:zaidhusain@gmail.com'); closePalette(); } },
+    { id: 'email', label: 'Send Email Direct', action: () => { window.open('mailto:zaidquazi412@gmail.com'); closePalette(); } },
   ];
 
   const filteredCommands = commands.filter(cmd => 

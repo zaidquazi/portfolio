@@ -13,8 +13,8 @@ const feedMeta = {
   link: BASE_URL,
   language: "en-IN",
   copyright: `© ${new Date().getFullYear()} Zaid Husain`,
-  managingEditor: "zaidhusain@gmail.com (Zaid Husain)",
-  webMaster: "zaidhusain@gmail.com (Zaid Husain)",
+  managingEditor: "zaidquazi412@gmail.com (Zaid Husain)",
+  webMaster: "zaidquazi412@gmail.com (Zaid Husain)",
   lastBuildDate: new Date().toUTCString(),
   category: ["Technology", "Software Engineering", "Web Development"],
 };

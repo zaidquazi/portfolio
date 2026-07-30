@@ -182,7 +182,7 @@ const jsonLd = {
         "https://www.linkedin.com/in/zaid-husain-329596257/",
         "https://www.instagram.com/zaidhusain/",
       ],
-      email: "zaidhusain@gmail.com",
+      email: "zaidquazi412@gmail.com",
       telephone: "+919309938127",
       address: {
         "@type": "PostalAddress",
