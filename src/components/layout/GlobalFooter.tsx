@@ -42,7 +42,7 @@ export function GlobalFooter() {
             <h3 className={styles.columnTitle}>Connect</h3>
             <ul className={styles.linkList}>
               <li>
-                <a href="https://github.com/zaidhusain" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                <a href="https://github.com/zaidquazi" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
                   GitHub <span className={styles.arrow} aria-hidden="true">↗</span>
                 </a>
               </li>
@@ -52,7 +52,7 @@ export function GlobalFooter() {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/zaidhusain/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
+                <a href="https://www.instagram.com/zaidquazi19__/" target="_blank" rel="noopener noreferrer" className={styles.footerLink}>
                   Instagram <span className={styles.arrow} aria-hidden="true">↗</span>
                 </a>
               </li>

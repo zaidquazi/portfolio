@@ -3,7 +3,7 @@ Developer: Zaid Husain
 Role: Full Stack Developer
 Location: Amravati, Maharashtra, India
 Email: zaidquazi412@gmail.com
-GitHub: https://github.com/zaidhusain
+GitHub: https://github.com/zaidquazi
 LinkedIn: https://www.linkedin.com/in/zaid-husain-329596257/
 
 /* SITE */
@@ -12,5 +12,5 @@ Language: English
 Standards: HTML5, CSS3, JSON-LD
 Components: React.js, Next.js, TypeScript
 Design: Custom architecture with bespoke CSS Modules
-Repository: https://github.com/zaidhusain/portfolio (Placeholder)
+Repository: https://github.com/zaidquazi/portfolio (Placeholder)
 URL: https://your-domain.com

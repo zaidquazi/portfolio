@@ -52,7 +52,7 @@ export default function Home() {
               <div className={`${styles.ctaGroup} ${styles.cinematicReveal} ${styles.delay4}`}>
                 <Button href="#work" variant="primary" size="lg">Explore Projects</Button>
                 <ResumeButton />
-                <Button href="https://github.com/zaidhusain" variant="ghost" size="md" target="_blank" rel="noopener noreferrer">GitHub ↗</Button>
+                <Button href="https://github.com/zaidquazi" variant="ghost" size="md" target="_blank" rel="noopener noreferrer">GitHub ↗</Button>
                 <Button href="https://www.linkedin.com/in/zaid-husain-329596257/" variant="ghost" size="md" target="_blank" rel="noopener noreferrer">LinkedIn ↗</Button>
               </div>
             </div>

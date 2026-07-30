@@ -81,7 +81,7 @@ export const projects: Project[] = [
     timeline: "2024",
     techSummary: ["React", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Supabase", "Tailwind CSS", "JWT"],
     primaryAchievement: "Built multi-role authentication with JWT and Supabase Row-Level Security, separating Student, Recruiter, and Admin data at the database layer.",
-    githubUrl: "https://github.com/zaidhusain/Talent",
+    githubUrl: "https://github.com/zaidquazi/Talent",
     liveUrl: "https://talentnexus.vercel.app/",
 
     stats: [
@@ -211,7 +211,7 @@ export const projects: Project[] = [
     timeline: "2024",
     techSummary: ["React", "Node.js", "Express.js", "MongoDB", "Socket.IO", "Stream Video SDK", "Zustand", "JWT"],
     primaryAchievement: "Integrated Socket.IO for bidirectional messaging and Stream Video SDK for WebRTC peer-to-peer video calls within a unified React client.",
-    githubUrl: "https://github.com/zaidhusain/Zashly",
+    githubUrl: "https://github.com/zaidquazi/Zashly",
     liveUrl: "https://zashly.vercel.app/",
 
     stats: [
@@ -341,7 +341,7 @@ export const projects: Project[] = [
     timeline: "2024",
     techSummary: ["React", "Node.js", "Express.js", "MongoDB", "Mongoose", "Tailwind CSS", "JWT", "React Router"],
     primaryAchievement: "Built a full MERN application with authenticated business listing submission, category-based filtering, and a responsive layout optimized for mobile use.",
-    githubUrl: "https://github.com/zaidhusain/Home-Town-Hub",
+    githubUrl: "https://github.com/zaidquazi/Home-Town-Hub",
     liveUrl: "https://home-town-hub-pi.vercel.app/",
 
     stats: [

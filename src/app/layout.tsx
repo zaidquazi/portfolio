@@ -178,9 +178,9 @@ const jsonLd = {
         caption: "Zaid Husain — Full Stack Developer",
       },
       sameAs: [
-        "https://github.com/zaidhusain",
+        "https://github.com/zaidquazi",
         "https://www.linkedin.com/in/zaid-husain-329596257/",
-        "https://www.instagram.com/zaidhusain/",
+        "https://www.instagram.com/zaidquazi19__/",
       ],
       email: "zaidquazi412@gmail.com",
       telephone: "+919309938127",

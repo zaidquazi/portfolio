@@ -311,7 +311,7 @@ Defined in `.github/workflows/ci.yml`:
 
 ### Known Limitations
 - `public/resume.pdf` is a placeholder path and should be populated with an actual PDF file prior to public distribution.
-- Domain fallback is configured to `https://your-domain.com` (can be configured via `NEXT_PUBLIC_SITE_URL`).
+- Domain fallback is configured to `https://zaidhusain.dev` (can be configured via `NEXT_PUBLIC_SITE_URL`).
 
 ### Future Roadmap
 - **Phase 11 — Content Management / MDX Integration**: Migrate static data objects in `src/data/` to dynamic MDX files for articles and case studies.
