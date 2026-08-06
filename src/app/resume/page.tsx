@@ -77,7 +77,7 @@ export default function ResumePage() {
           <h1 className={styles.resumeTitle}>Zaid Husain</h1>
           <p className={styles.resumeSubtitle}>Full Stack Developer</p>
           <div className={styles.resumeActions}>
-            <Button href="/resume.jpg" variant="primary" target="_blank" rel="noopener noreferrer">
+            <Button href="/resume.png" variant="primary" target="_blank" rel="noopener noreferrer">
               View / Download Resume
             </Button>
             <Button href="/#contact" variant="secondary">

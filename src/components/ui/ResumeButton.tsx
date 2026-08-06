@@ -7,7 +7,7 @@ export function ResumeButton() {
     <div className={styles.splitBtn} role="group" aria-label="Resume options">
       {/* Left half — View */}
       <a
-        href="/resume.jpg"
+        href="/resume.png"
         target="_blank"
         rel="noopener noreferrer"
         className={styles.half}
