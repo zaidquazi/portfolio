@@ -80,7 +80,7 @@ export default function Home() {
             <div className={`${styles.heroImageWrapper} ${styles.cinematicReveal} ${styles.delay2}`}>
               <div className={styles.heroImageContainer}>
                 <Image 
-                  src="/p1.png" 
+                  src="/zaid-husain.png" 
                   alt={`${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`} 
                   title={`${SEO.PERSON_NAME} — ${SEO.JOB_TITLE}`}
                   fill 
